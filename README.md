@@ -12,16 +12,16 @@ SFTP CREDENTIALS:
   Folder: /files/incoming
 
 
-1) 	Monthly Manually Load files from FileZilla-SFTP to Google Drive (we split files manually into the corresponding subfolder depends on the publisher_id). 
+1) 	Monthly Load files from FileZilla-SFTP to Google Drive (we split files manually into the corresponding subfolder depends on the publisher_id). 
  Drive Path:   https://drive.google.com/drive/u/0/folders/1MIlXPDG09Df6QpKCVfK8JvyD1q_sVrGX
 
-2)	We Run Python script: “run_payout_dev.py” loading files from Drive to SQL tables. Before load data, the script truncates tables to avoid duplicating values.
+2)	Run Python script: “run_payout_dev.py” loading files from Drive to SQL tables. Before load data, the script truncates tables to avoid duplicating values.
 
 	Important for BI: 
 	BEFORE run the python script we need to check in sql management studio (job activity monitor) the jobs: dwh_etl_an_payout & dwh_etl_an_last_3:  THEY MUST NOT BE RUNNING. Those files already exist in the history table, not in the raw (raw table is being truncated every time the python script runs) Reason: We always have the files in google drive.  
     
 
-3)	Next step we move FileZilla files from SFTP incoming folder to SFTP processed folder.
+3)	Move FileZilla files from SFTP incoming folder to SFTP processed folder.
 
 
 4)	Load Data from drive to SQL tables:  
